@@ -1,0 +1,25 @@
+= Test 2
+
+
+== Goal
+
+Install Logstash and Elastic Search on a single Ubuntu VM and run Elastic Search as a service.
+
+This will be done using Chef.
+
+
+== Plan
+
+* Install ChefDK
+* Create a basic cook book to develop against Docker
+* Add test kitchen tests
+* Write the recipes
+* Once it is working in Docker get VirtualBox working on my laptop
+* Document
+
+
+== Decisions
+
+* Write my own cookbook rather than using the community one but mention the community one in the notes.
+* Do this in Vagrant with Docker first as it will be faster and VirtualBox does not currently work on my laptop.
+
