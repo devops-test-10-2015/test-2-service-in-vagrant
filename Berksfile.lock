@@ -1,0 +1,12 @@
+DEPENDENCIES
+  my-elk-stack-cookbook
+    git: https://github.com/devops-test-10-2015/my-elk-stack-cookbook.git
+    revision: 636469f8df487f44cc7e62f8b1a27b36f89d1a58
+    tag: v1.0.2
+  test-2-service-in-vagrant
+    path: .
+    metadata: true
+
+GRAPH
+  my-elk-stack-cookbook (1.0.2)
+  test-2-service-in-vagrant (0.0.0)
