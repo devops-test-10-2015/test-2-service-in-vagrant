@@ -1,5 +1,12 @@
 = Test 2
 
+== System requirements
+
+* Install https://www.virtualbox.org/[VirtualBox]
+* Install https://docs.vagrantup.com/v2/[Vagrant]
+* Install https://downloads.chef.io/chef-dk/[ChefDK]
+* Install the vagrant plugin for Berkshelf: `vagrant plugin install vagrant-berkshelf`
+
 
 == Goal
 
@@ -10,16 +17,47 @@ This will be done using Chef.
 
 == Plan
 
+=== The Cookbook
+
 * Install ChefDK
 * Create a basic cook book to develop against Docker
-* Add test kitchen tests
+* Add test kitchen integration test framework
+* Write serverspec tests for the services 
 * Write the recipes
 * Once it is working in Docker get VirtualBox working on my laptop
+* Done ======================
+* Run Foodcritic
 * Document
+* Remember to change the .kitchen.yaml so it will work for other people
+
+=== The Vagrant project
+
+* Create the Vagrant file
+* Use Berkshelf to vendor in the cookbook and commit it to source control
+* Add the chef provisioner to run the cookbook
+* Make sure that it all works with a `vagrant up` in a clean environment
+* Document
+* Add some tests if there is time (although they are already in the cookbook)
+* Add the repo's to the hackerrank test
 
 
 == Decisions
 
 * Write my own cookbook rather than using the community one but mention the community one in the notes.
 * Do this in Vagrant with Docker first as it will be faster and VirtualBox does not currently work on my laptop.
+
+== Issues
+
+
+=== Open JDK installation problems on Ubuntu
+
+The apt cache is not up to date and jdk cannot be installed. The apt update installs a massive amount of stuff
+
+Solutions
+
+* Use CentOS
+* Use a later version of Ubuntu (I think I am usign the latest LTS as it is)
+* Uses Oracle JDK - this has problems with the download, there is a cookbook but that could have it's own problems
+* Choose another service to install - could go with Consul
+
 
