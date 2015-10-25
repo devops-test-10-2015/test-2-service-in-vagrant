@@ -65,8 +65,8 @@ Logstash is not installed as a service so you need to log in to the VM to use it
 * Add the chef provisioner to run the cookbook
 * Add the repo's to the hackerrank test
 * Document
-* Done ======================
 * Test it all works with a `vagrant up` in a clean environment
+* Done ======================
 * Remove the requirement for Berkshelf
 
 
