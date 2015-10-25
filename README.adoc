@@ -1,18 +1,47 @@
-= Test 2
-
-== System requirements
-
-* Install https://www.virtualbox.org/[VirtualBox]
-* Install https://docs.vagrantup.com/v2/[Vagrant]
-* Install https://downloads.chef.io/chef-dk/[ChefDK]
-* Install the vagrant plugin for Berkshelf: `vagrant plugin install vagrant-berkshelf`
-
+= Test 2 - Service in Vagrant
 
 == Goal
 
 Install Logstash and Elastic Search on a single Ubuntu VM and run Elastic Search as a service.
 
 This will be done using Chef.
+
+
+== Project details
+
+This project contains the Vagrantfile that will allow you to start up a VM in VirtualBox with 
+Logstash installed and running Elastic Search as a service.
+
+There is very little in this project as the actual provisioning Cookbook is in the 
+https://github.com/devops-test-10-2015/my-elk-stack-cookbook[my-elk-stack-cookbook] Cookbook project.
+
+
+== System requirements
+
+* Install https://www.virtualbox.org/[VirtualBox]
+* Install https://docs.vagrantup.com/v2/[Vagrant]
+* Install https://downloads.chef.io/chef-dk/[ChefDK] to get Berkshelf
+* Install the vagrant plugin for Berkshelf: `vagrant plugin install vagrant-berkshelf`
+* Install the vagrant plugin for guest additions: `vagrant plugin install vagrant-vbguest`
+
+
+== Starting the VM
+
+Once the system requirements are installed it should be possible to start the VM with:
+
+    vagrant up
+
+The usual login process can then be used:
+
+    vagrant ssh
+
+Once the VM is started you should be able to access the Elastic Search server from the 
+host machine:
+
+    curl 'localhost:9200'
+    curl 'localhost:9200/_cat/health?v'
+
+Logstash is not installed as a service so you need to log in to the VM to use it.
 
 
 == Plan
@@ -25,25 +54,25 @@ This will be done using Chef.
 * Write serverspec tests for the services 
 * Write the recipes
 * Once it is working in Docker get VirtualBox working on my laptop
-* Done ======================
-* Run Foodcritic
 * Document
-* Remember to change the .kitchen.yaml so it will work for other people
+* Change the .kitchen.yaml so it will work for other people
+* Run Foodcritic
 
 === The Vagrant project
 
 * Create the Vagrant file
-* Use Berkshelf to vendor in the cookbook and commit it to source control
+* Add the berkshelf plugin so the cookbooks can be versioned in a Berksfile
 * Add the chef provisioner to run the cookbook
-* Make sure that it all works with a `vagrant up` in a clean environment
-* Document
-* Add some tests if there is time (although they are already in the cookbook)
 * Add the repo's to the hackerrank test
+* Document
+* Done ======================
+* Test it all works with a `vagrant up` in a clean environment
+* Remove the requirement for Berkshelf
 
 
 == Decisions
 
-* Write my own cookbook rather than using the community one but mention the community one in the notes.
+* Write my own cookbook rather than using the community one as I think that is what is required.
 * Do this in Vagrant with Docker first as it will be faster and VirtualBox does not currently work on my laptop.
 
 == Issues
@@ -59,5 +88,12 @@ Solutions
 * Use a later version of Ubuntu (I think I am usign the latest LTS as it is)
 * Uses Oracle JDK - this has problems with the download, there is a cookbook but that could have it's own problems
 * Choose another service to install - could go with Consul
+
+
+=== Running SystemD services in Docker
+
+This currently does not work so I moved to Vagrant and VirtualBox as that was a requirement anyway
+
+
 
 
